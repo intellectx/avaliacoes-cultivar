@@ -4,9 +4,34 @@
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Kilderson Sena",
+            "email": "dersonsena@gmail.com"
+        }
+    ],
+    "scripts": {
+        "test": "phpunit --colors",
+        "test-unit": "phpunit --colors --testsuite unit",
+        "test-filter": "phpunit --colors --filter ",
+        "coverage": "phpunit --coverage-html tests/coverage/html",
+        "code-sniffer": "phpcs --standard=phpcs.xml",
+        "code-fixer": "php-cs-fixer fix ./app --allow-risky yes",
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    },
     "require": {
         "php": "^7.3|^8.0",
         "fideloper/proxy": "^4.4",
+        "friendsofphp/php-cs-fixer": "^2.18",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "inertiajs/inertia-laravel": "^0.3.5",
@@ -14,6 +39,7 @@
         "laravel/jetstream": "^2.3",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
+        "squizlabs/php_codesniffer": "^3.6",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
@@ -35,18 +61,6 @@
         "psr-4": {
             "Tests\\": "tests/"
         }
-    },
-    "scripts": {
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
-        ]
     },
     "extra": {
         "laravel": {

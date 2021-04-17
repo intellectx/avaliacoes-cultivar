@@ -8,6 +8,7 @@ services:
     environment:
       - XDEBUG_START_WITH_REQUEST=yes
       - XDEBUG_DISCOVER_CLIENT_HOST=false
+      - XDEBUG_MODE=coverage
     ports:
       - '${DOCKER_APP_PORT}:80'
       - '${DOCKER_APP_PORT_SSL}:443'
