@@ -17,5 +17,5 @@ indent_size = 2
 [*.{js,ts,tsx}]
 indent_size = 2
 
-[package.json]
+[{package.json, tsconfig.json}]
 indent_size = 2

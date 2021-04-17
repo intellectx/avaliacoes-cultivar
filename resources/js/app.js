@@ -1,13 +1,15 @@
-import { InertiaApp } from '@inertiajs/inertia-react'
+import {InertiaApp} from '@inertiajs/inertia-react'
 import React from 'react'
-import { render } from 'react-dom'
+import {render} from 'react-dom'
 
 const app = document.getElementById('app')
 
 render(
+  <React.StrictMode>
     <InertiaApp
-        initialPage={JSON.parse(app.dataset.page)}
-        resolveComponent={name => import(`./Pages/${name}`).then(module => module.default)}
-    />,
-    app
+      initialPage={JSON.parse(app.dataset.page)}
+      resolveComponent={name => import(`./Pages/${name}`).then(module => module.default)}
+    />
+  </React.StrictMode>,
+  app
 )
