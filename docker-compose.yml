@@ -1,0 +1,37 @@
+version: '3'
+services:
+  app:
+    container_name: ${PROJECT_NAME}-app
+    image: dersonsena/php-nginx-dev
+    volumes:
+      - ./:/var/www/html
+    environment:
+      - XDEBUG_START_WITH_REQUEST=yes
+      - XDEBUG_DISCOVER_CLIENT_HOST=false
+    ports:
+      - '${DOCKER_APP_PORT}:80'
+      - '${DOCKER_APP_PORT_SSL}:443'
+    networks:
+      - avaliacoes-network
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    container_name: ${PROJECT_NAME}-db
+    command: --default-authentication-plugin=mysql_native_password --explicit_defaults_for_timestamp=1
+    restart: always
+    ports:
+      - "${DOCKER_MYSQL_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+    networks:
+      - avaliacoes-network
+    volumes:
+      - ./.docker/mysql:/etc/mysql/conf.d
+      - ./.docker/data/mysql:/var/lib/mysql
+
+networks:
+  avaliacoes-network:
+    driver: bridge
