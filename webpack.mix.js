@@ -1,7 +1,7 @@
 const mix = require('laravel-mix');
 
-mix.ts('resources/js/app.js', 'public/js').react()
-  .postCss('resources/css/app.css', 'public/css', [
+mix.ts('frontend/app.js', 'public/js').react()
+  .postCss('frontend/css/app.css', 'public/css', [
     require('postcss-import')
   ])
   .webpackConfig(require('./webpack.config'));

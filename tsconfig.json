@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": "./resources/js",
+    "baseUrl": "./frontend",
     "paths": {
       "@/*": [
-        "resources/js/*"
+        "frontend/*"
       ]
     },
     "outDir": "public/js",
@@ -12,7 +12,7 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "rootDirs": [
-      "resources/js"
+      "frontend"
     ],
     "lib": [
       "dom",
@@ -32,7 +32,7 @@
     "jsx": "preserve"
   },
   "include": [
-    "resources/js"
+    "frontend"
   ],
   "exclude": []
 }

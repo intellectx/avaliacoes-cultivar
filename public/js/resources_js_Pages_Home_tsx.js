@@ -2,7 +2,7 @@
 
 /***/ "./resources/js/Pages/Home.tsx":
 /*!*************************************!*\
-  !*** ./resources/js/Pages/Home.tsx ***!
+  !*** ./resources/js/pages/Login.tsx ***!
   \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
