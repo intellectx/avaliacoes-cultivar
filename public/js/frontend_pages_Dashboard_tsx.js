@@ -1,9 +1,9 @@
-(globalThis["webpackChunkavaliacoes_cultivar"] = globalThis["webpackChunkavaliacoes_cultivar"] || []).push([["resources_js_Pages_Home_tsx"],{
+(globalThis["webpackChunkavaliacoes_cultivar"] = globalThis["webpackChunkavaliacoes_cultivar"] || []).push([["frontend_pages_Dashboard_tsx"],{
 
-/***/ "./resources/js/Pages/Home.tsx":
-/*!*************************************!*\
-  !*** ./resources/js/pages/Login.tsx ***!
-  \*************************************/
+/***/ "./frontend/pages/Dashboard.tsx":
+/*!**************************************!*\
+  !*** ./frontend/pages/Dashboard.tsx ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -16,15 +16,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Home = function Home() {
-  var foo = "React";
-  var bar = "TypeScript";
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h1", {
-    children: ["Hello Laravel + ", foo, " + ", bar]
+var Dashboard = function Dashboard() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
+    children: "OI!"
   });
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Dashboard);
 
 /***/ })
 
