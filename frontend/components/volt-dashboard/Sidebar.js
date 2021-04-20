@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import SimpleBar from 'simplebar-react';
-import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartPie, faCog, faTimes, faSignOutAlt, faUser, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
-import { Link } from 'react-router-dom';
-import {APP_ROUTES} from "../../routes/app";
-import {AUTH_ROUTES} from "../../routes/auth";
+import {InertiaLink} from "@inertiajs/inertia-react";
+import {APP_ROUTES, AUTH_ROUTES, GROUP_ROUTES, USER_ROUTES} from "../../config/routes";
 
 export default (props = {}) => {
-  const location = useLocation();
   const { pathname } = location;
   const [show, setShow] = useState(false);
   const showClass = show ? "show" : "";
@@ -41,10 +38,10 @@ export default (props = {}) => {
   };
 
   const NavItem = (props) => {
-    const { title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary" } = props;
+    const { title, link, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary" } = props;
     const classNames = badgeText ? "d-flex justify-content-start align-items-center justify-content-between" : "";
     const navItemClassName = link === pathname ? "active" : "";
-    const linkProps = external ? { href: link } : { as: Link, to: link };
+    const linkProps = { as: InertiaLink, href: link };
 
     return (
       <Nav.Item className={navItemClassName} onClick={() => setShow(false)}>
@@ -66,7 +63,7 @@ export default (props = {}) => {
   return (
     <>
       <Navbar expand={false} collapseOnSelect variant="dark" className="navbar-theme-primary px-4 d-md-none">
-        <Navbar.Brand className="me-lg-5" as={Link} to={''}>
+        <Navbar.Brand className="me-lg-5" as={InertiaLink} href={APP_ROUTES.DASHBOARD}>
           <Image src='' className="navbar-brand-light" />
         </Navbar.Brand>
         <Navbar.Toggle as={Button} aria-controls="main-navbar" onClick={onCollapse}>
@@ -83,7 +80,7 @@ export default (props = {}) => {
                 </div>
                 <div className="d-block">
                   <h6>Hi, Jane</h6>
-                  <Button as={Link} variant="secondary" size="xs" to={''} className="text-dark">
+                  <Button as={InertiaLink} variant="secondary" size="xs" href={''} className="text-dark">
                     <FontAwesomeIcon icon={faSignOutAlt} className="me-2" /> Sign Out
                   </Button>
                 </div>
@@ -93,7 +90,7 @@ export default (props = {}) => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="Avaliações Cultivar" link={''} />
+              <NavItem title="Avaliações Cultivar" />
 
               <NavItem title="Dashboard" link={APP_ROUTES.DASHBOARD} icon={faChartPie} />
 
@@ -110,8 +107,8 @@ export default (props = {}) => {
               <Dropdown.Divider className="my-3 border-indigo" />
 
               <CollapsableNavItem eventKey="system/" title="Sistema" icon={faCog}>
-                <NavItem title="Usuários" icon={faUser} link={''} />
-                <NavItem title="Perfis de Acesso" icon={faUsers} link={''} />
+                <NavItem title="Usuários" icon={faUser} link={USER_ROUTES.INDEX} />
+                <NavItem title="Perfis de Acesso" icon={faUsers} link={GROUP_ROUTES.INDEX} />
               </CollapsableNavItem>
               <NavItem title="Sair" link={AUTH_ROUTES.LOGIN} icon={faSignOutAlt} />
             </Nav>

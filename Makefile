@@ -89,6 +89,15 @@ model: ## Create a laravel model (e.g make model TABLE=users MODEL=User)
 key: ## Generates a app key
 	@docker exec -it "${PROJECT_NAME}-app" php artisan key:generate
 
+cache-clear: ## Clear all application cache
+	@echo -e "\n~~> Cleaning laravel cache..."
+	@docker exec -it "${PROJECT_NAME}-app" php artisan config:cache && php artisan config:clear
+	@echo -e "\n~~> Applying 775 permissions to storage path..."
+	@docker exec -it "${PROJECT_NAME}-app" chmod -R 775 storage
+	@echo -e "\n~~> Running autoload dump..."
+	@docker exec -it "${PROJECT_NAME}-app" composer dump-autoload -o
+	@echo -e "\n~~> Done!"
+
 ##@ PHP Unit - Tests
 
 test: ## Run the all suite test

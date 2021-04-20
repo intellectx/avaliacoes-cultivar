@@ -68,9 +68,9 @@ return [
     | Fortify Routes Prefix / Subdomain
     |--------------------------------------------------------------------------
     |
-    | Here you may specify which prefix Fortify will assign to all the routes
+    | Here you may specify which prefix Fortify will assign to all the config
     | that it registers with the application. If necessary, you may change
-    | subdomain under which all of the Fortify routes will be available.
+    | subdomain under which all of the Fortify config will be available.
     |
     */
 
@@ -83,7 +83,7 @@ return [
     | Fortify Routes Middleware
     |--------------------------------------------------------------------------
     |
-    | Here you may specify which middleware Fortify will assign to the routes
+    | Here you may specify which middleware Fortify will assign to the config
     | that it registers with the application. If necessary, you may change
     | these middleware but typically this provided default is preferred.
     |
@@ -112,7 +112,7 @@ return [
     | Register View Routes
     |--------------------------------------------------------------------------
     |
-    | Here you may specify if the routes returning views should be disabled as
+    | Here you may specify if the config returning views should be disabled as
     | you may not need them when building your own application. This may be
     | especially true if you're writing a custom single-page application.
     |
