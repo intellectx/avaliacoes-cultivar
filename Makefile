@@ -77,17 +77,17 @@ migrate: ## Run all the yii migrations
 	@docker exec -it "${PROJECT_NAME}-app" php artisan migrate
 	@echo -e "done!\n"
 
-migrate-create: ## Run all the ./yii migrate/create. (e.g make migrate-create NAME="migrateName")
+migrate-create: ## Run all the create tool (e.g make migrate-create NAME="migrateName")
 	@docker exec -it "${PROJECT_NAME}-app" php artisan make:migration "${NAME}" --create=tasks
 
-migrate-down: ## Run all the yii migrate/down
+migrate-down: ## Run all the migrate/down
 	@docker exec -it "${PROJECT_NAME}-app" ./yii migrate/down
 
-migrate-fresh: ## Delete all tables from the database and apply all migrations from the beginning
-	@docker exec -it "${PROJECT_NAME}-app" ./yii migrate/fresh
-
-model: ## Create a model using GII (e.g make model TABLE=users MODEL=User)
+model: ## Create a laravel model (e.g make model TABLE=users MODEL=User)
 	@docker exec -it "${PROJECT_NAME}-app" php artisan make:model "${MODEL}"
+
+key: ## Generates a app key
+	@docker exec -it "${PROJECT_NAME}-app" php artisan key:generate
 
 ##@ PHP Unit - Tests
 

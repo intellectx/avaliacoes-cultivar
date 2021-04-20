@@ -3,9 +3,11 @@ import SimpleBar from 'simplebar-react';
 import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faChartPie, faCog, faTimes, faSignOutAlt, faUser, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
+import {APP_ROUTES} from "../../routes/app";
+import {AUTH_ROUTES} from "../../routes/auth";
 
 export default (props = {}) => {
   const location = useLocation();
@@ -93,15 +95,9 @@ export default (props = {}) => {
             <Nav className="flex-column pt-3 pt-md-0">
               <NavItem title="Avaliações Cultivar" link={''} />
 
-              <NavItem title="Overview" link={''} icon={faChartPie} />
-              <NavItem title="Transactions" icon={faHandHoldingUsd} link={''} />
-              <NavItem title="Settings" icon={faCog} link={''} />
+              <NavItem title="Dashboard" link={APP_ROUTES.DASHBOARD} icon={faChartPie} />
 
-              <CollapsableNavItem eventKey="tables/" title="Tables" icon={faTable}>
-                <NavItem title="Bootstrap Table" link={''} />
-              </CollapsableNavItem>
-
-              <CollapsableNavItem eventKey="examples/" title="Page Examples" icon={faFileAlt}>
+              {/*<CollapsableNavItem eventKey="examples/" title="Page Examples" icon={faFileAlt}>
                 <NavItem title="Sign In" link={''} />
                 <NavItem title="Sign Up" link={''} />
                 <NavItem title="Forgot password" link={''} />
@@ -109,40 +105,15 @@ export default (props = {}) => {
                 <NavItem title="Lock" link={''} />
                 <NavItem title="404 Not Found" link={''} />
                 <NavItem title="500 Server Error" link={''} />
-              </CollapsableNavItem>
-
-              <NavItem external title="Plugins" link="https://demo.themesberg.com/volt-pro-react/#/plugins/charts" target="_blank" badgeText="Pro" icon={faChartPie} />
+              </CollapsableNavItem>*/}
 
               <Dropdown.Divider className="my-3 border-indigo" />
 
-              <CollapsableNavItem eventKey="documentation/" title="Getting Started" icon={faBook}>
-                <NavItem title="Overview" link={''} />
-                <NavItem title="Download" link={''} />
-                <NavItem title="Quick Start" link={''} />
-                <NavItem title="License" link={''} />
-                <NavItem title="Folder Structure" link={''} />
-                <NavItem title="Build Tools" link={''} />
-                <NavItem title="Changelog" link={''} />
+              <CollapsableNavItem eventKey="system/" title="Sistema" icon={faCog}>
+                <NavItem title="Usuários" icon={faUser} link={''} />
+                <NavItem title="Perfis de Acesso" icon={faUsers} link={''} />
               </CollapsableNavItem>
-              <CollapsableNavItem eventKey="components/" title="Components" icon={faBoxOpen}>
-                <NavItem title="Accordion" link={''} />
-                <NavItem title="Alerts" link={''} />
-                <NavItem title="Badges" link={''} />
-                <NavItem external title="Widgets" link="https://demo.themesberg.com/volt-pro-react/#/components/widgets" target="_blank" badgeText="Pro" />
-                <NavItem title="Breadcrumbs" link={''} />
-                <NavItem title="Buttons" link={''} />
-                <NavItem title="Forms" link={''} />
-                <NavItem title="Modals" link={''} />
-                <NavItem title="Navbars" link={''} />
-                <NavItem title="Navs" link={''} />
-                <NavItem title="Pagination" link={''} />
-                <NavItem title="Popovers" link={''} />
-                <NavItem title="Progress" link={''} />
-                <NavItem title="Tables" link={''} />
-                <NavItem title="Tabs" link={''} />
-                <NavItem title="Toasts" link={''} />
-                <NavItem title="Tooltips" link={''} />
-              </CollapsableNavItem>
+              <NavItem title="Sair" link={AUTH_ROUTES.LOGIN} icon={faSignOutAlt} />
             </Nav>
           </div>
         </SimpleBar>
