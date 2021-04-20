@@ -5,8 +5,16 @@ import Navbar from "../volt-dashboard/Navbar";
 import Footer from "../volt-dashboard/Footer";
 import { Breadcrumb } from "@themesberg/react-bootstrap";
 
-const MainLayout: React.FC = (props) => {
+type MainLayoutProps = {
+  title?: string
+}
+
+const MainLayout: React.FC<MainLayoutProps> = ({ title = '', children }) => {
   const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    document.title = `${title && title.length > 0 ? title + ' | ' : ''}Avaliações Cultivar`;
+  }, [title])
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 2000);
@@ -28,7 +36,7 @@ const MainLayout: React.FC = (props) => {
           </Breadcrumb>
           <h4>Usuários</h4>
         </div>
-        { props.children }
+        { children }
         <Footer/>
       </main>
     </>

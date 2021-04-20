@@ -9,6 +9,8 @@ import "react-datetime/css/react-datetime.css";
 import "./css/volt-dashboard/volt.scss";
 import {InertiaApp} from "@inertiajs/inertia-react";
 import { InertiaProgress } from '@inertiajs/progress'
+import MainLayout from "./components/layout/Main";
+import AuthLayout from "./components/layout/Auth";
 
 InertiaProgress.init({
   delay: 250,
@@ -21,10 +23,13 @@ render(
   <React.StrictMode>
     <InertiaApp
       initialPage={JSON.parse(app.dataset.page)}
-      resolveComponent={name =>
-        import(`./pages/${name}`).then(module => module.default)
-      }
-    />,
+      resolveComponent={async name => {
+        const pageModule = await import(`./pages/${name}`)
+        const { default: pageComponent } = pageModule;
+
+        return pageComponent;
+      }}
+    />
   </React.StrictMode>,
   document.getElementById('app')
 )

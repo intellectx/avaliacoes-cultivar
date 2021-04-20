@@ -3,10 +3,11 @@ import MainLayout from "../../components/layout/Main";
 
 const UserPage = () => {
   return (
-    <MainLayout>
       <div>Main User page</div>
-    </MainLayout>
   );
 };
+
+// @ts-ignore
+UserPage.layout = page => <MainLayout children={page} title="Usuários" />
 
 export default UserPage;

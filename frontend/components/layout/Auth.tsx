@@ -1,7 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Container, Image} from "@themesberg/react-bootstrap";
 
-const AuthLayout: React.FC = (props) => {
+type AuthLayoutProps = {
+  title: string
+}
+
+const AuthLayout: React.FC<AuthLayoutProps> = ({ title, children }) => {
+  useEffect(() => {
+    document.title = `${title} | Avaliações Cultivar`;
+  }, [title])
+
   return (
     <main>
       <section className="d-flex align-items-center my-4 mt-lg-3 mb-lg-3">
@@ -9,7 +17,7 @@ const AuthLayout: React.FC = (props) => {
           <div className="text-center">
             <Image src='/images/logo-characters.png' className='mb-lg-3' style={{maxHeight: '170px'}} />
           </div>
-          { props.children }
+          { children }
         </Container>
       </section>
     </main>

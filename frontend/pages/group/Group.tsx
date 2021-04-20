@@ -3,10 +3,11 @@ import MainLayout from "../../components/layout/Main";
 
 const GroupPage = () => {
   return (
-    <MainLayout>
-      <div>Main Group page</div>
-    </MainLayout>
+    <div>Main Group page</div>
   );
 };
+
+// @ts-ignore
+GroupPage.layout = page => <MainLayout children={page} title="Perfis de Acesso" />
 
 export default GroupPage;
