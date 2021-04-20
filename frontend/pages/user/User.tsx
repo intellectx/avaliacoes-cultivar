@@ -1,5 +1,6 @@
 import React from 'react';
-import MainLayout from "../../components/layout/Main";
+import MainLayout, {BreadcrumbType} from "../../components/layout/Main";
+import {USER_ROUTES} from "../../config/routes";
 
 const UserPage = () => {
   return (
@@ -7,7 +8,12 @@ const UserPage = () => {
   );
 };
 
+const breadcrumb: Array<BreadcrumbType> = [
+  { text: 'Usuários', href: USER_ROUTES.INDEX },
+  { text: 'Listagem', active: true },
+]
+
 // @ts-ignore
-UserPage.layout = page => <MainLayout children={page} title="Usuários" />
+UserPage.layout = page => <MainLayout children={page} breadcrumb={breadcrumb} title="Usuários" />
 
 export default UserPage;

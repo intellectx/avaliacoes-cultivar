@@ -17,7 +17,7 @@ Route::get('/forgot-password')->name('forgot-password')->uses(ForgotPasswordCont
 Route::get('/reset-password')->name('reset-password')->uses(ResetPasswordController::class);
 
 // User
-Route::get('/users')->name('user-index')->uses(UserIndexController::class);
+Route::get('/system/users')->name('user-index')->uses(UserIndexController::class);
 
 // Group
-Route::get('/groups')->name('group-index')->uses(GroupIndexController::class);
+Route::get('/system/groups')->name('group-index')->uses(GroupIndexController::class);

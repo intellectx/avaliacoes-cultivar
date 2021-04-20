@@ -10,9 +10,9 @@ export enum AUTH_ROUTES {
 }
 
 export enum GROUP_ROUTES {
-  INDEX = "/groups"
+  INDEX = "/system/groups"
 }
 
 export enum USER_ROUTES {
-  INDEX = "/users"
+  INDEX = "/system/users"
 }

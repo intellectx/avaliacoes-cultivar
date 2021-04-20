@@ -2,7 +2,7 @@ import React from "react";
 import MainLayout from "../components/layout/Main";
 
 const Dashboard: React.FC = () => (
-  <h1>Dashboard</h1>
+  <p>Conteúdo da página dashboard.</p>
 );
 
 // @ts-ignore
