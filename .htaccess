@@ -1,0 +1,12 @@
+##### LOCAWEB - NAO REMOVER #####
+AddHandler php5-script .php
+suPHP_ConfigPath /home/avaliacoescultivar1/
+##### LOCAWEB - NAO REMOVER #####
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.+)$ index.php?path=$1 [QSA,L]
