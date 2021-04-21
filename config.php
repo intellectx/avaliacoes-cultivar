@@ -1,11 +1,12 @@
 <?php
 
   define('ABSPATH', dirname( __FILE__ ));
-  define('HOME_URI', 'http://avaliacoescultivar.com.br');
+  //define('HOME_URI', 'http://avaliacoescultivar.com.br');
+  define('HOME_URI', 'https://avaliacoescultivar-homolog.herokuapp.com');
 
-  define('HOSTNAME', 'avaliacoescult.mysql.dbaas.com.br');
-  define('DB_NAME', 'avaliacoescult');
-  define('DB_USER', 'avaliacoescult');
-  define('DB_PASSWORD', 'Pr0m3theu5');
+  define('HOSTNAME', 'cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com');
+  define('DB_NAME', 'guq20uykiyviwtx8');
+  define('DB_USER', 'e5hnmt2axfna8z46');
+  define('DB_PASSWORD', 'zpf0l6flbqbezmfz');
 
   require_once ABSPATH . '/loader.php';
