@@ -7,7 +7,7 @@
   "license": "BSD-3-Clause",
   "minimum-stability": "stable",
   "require": {
-    "php": ">=5.2"
+    "php": "^5.2"
   },
   "config": {
     "platform": {
