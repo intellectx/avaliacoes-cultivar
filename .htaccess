@@ -1,8 +1,3 @@
-##### LOCAWEB - NAO REMOVER #####
-AddHandler php5-script .php
-suPHP_ConfigPath /home/avaliacoescultivar1/
-##### LOCAWEB - NAO REMOVER #####
-
 RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} !-d
