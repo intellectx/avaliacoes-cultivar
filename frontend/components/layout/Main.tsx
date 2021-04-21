@@ -3,7 +3,7 @@ import Preloader from "../volt-dashboard/Preloader";
 import Sidebar from "../volt-dashboard/Sidebar";
 import Navbar from "../volt-dashboard/Navbar";
 import Footer from "../volt-dashboard/Footer";
-import { Breadcrumb } from "@themesberg/react-bootstrap";
+import {Breadcrumb, Card, Col, Row} from "@themesberg/react-bootstrap";
 import {InertiaLink} from "@inertiajs/inertia-react";
 import {APP_ROUTES} from "../../config/routes";
 
@@ -54,7 +54,15 @@ const MainLayout: React.FC<MainLayoutProps> = ({ title = '', breadcrumb, childre
             <h4>{ title }</h4>
           </div>
         </div>
-        { children }
+        <Row>
+          <Col className="mb-4 page-content" xs="12">
+            <Card>
+              <Card.Body>
+                { children }
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
         <Footer/>
       </main>
     </>
