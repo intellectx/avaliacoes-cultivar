@@ -54,7 +54,7 @@
   },
   "engines": {
     "node": "v15.*",
-    "npm": "7.5.*"
+    "yarn": "1.22.*"
   },
   "browserslist": {
     "production": [
