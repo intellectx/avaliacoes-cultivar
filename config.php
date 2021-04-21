@@ -2,11 +2,11 @@
 
   define('ABSPATH', dirname( __FILE__ ));
   //define('HOME_URI', 'http://avaliacoescultivar.com.br');
-  define('HOME_URI', 'https://avaliacoescultivar-homolog.herokuapp.com');
+  define('HOME_URI', 'https://avaliacoescultivar-production.herokuapp.com');
 
   define('HOSTNAME', 'cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com');
-  define('DB_NAME', 'guq20uykiyviwtx8');
-  define('DB_USER', 'e5hnmt2axfna8z46');
-  define('DB_PASSWORD', 'zpf0l6flbqbezmfz');
+  define('DB_NAME', 'qairawn1e3f807di');
+  define('DB_USER', 'qufajgtiv3xkykj0');
+  define('DB_PASSWORD', 'p0ewdwe1qnr0vc0j');
 
   require_once ABSPATH . '/loader.php';
