@@ -1,0 +1,17 @@
+{
+  "name": "intellectx/avaliacoes-cultivar",
+  "description": "Avaliações Cultivar",
+  "keywords": [],
+  "homepage": "http://avaliacoescultivar.com.br/",
+  "type": "project",
+  "license": "BSD-3-Clause",
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.2"
+  },
+  "config": {
+    "platform": {
+      "php": "5.2.17"
+    }
+  }
+}
