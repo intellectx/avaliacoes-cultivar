@@ -83,8 +83,8 @@ migrate-create: ## Run all the create tool (e.g make migrate-create NAME="migrat
 migrate-down: ## Run all the migrate/down
 	@docker exec -it "${PROJECT_NAME}-app" ./yii migrate/down
 
-model: ## Create a laravel model (e.g make model TABLE=users MODEL=User)
-	@docker exec -it "${PROJECT_NAME}-app" php artisan make:model "${MODEL}"
+model: ## Create a laravel model (e.g make model MODEL=User)
+	@docker exec -it "${PROJECT_NAME}-app" php artisan make:model "${MODEL}" -mfs
 
 key: ## Generates a app key
 	@docker exec -it "${PROJECT_NAME}-app" php artisan key:generate
