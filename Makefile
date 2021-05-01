@@ -34,6 +34,12 @@ in-db: ## Enter in app container
 ps: ## List the project containers
 	@docker-compose ps
 
+logs: ## Show application logs as tail
+	@docker-compose logs -f app
+
+nginx-logs: ## Show application nginx logs as tail
+	@docker exec -it "${PROJECT_NAME}-app" tail -f /var/log/nginx/application-error.log
+
 ##@ Composer
 
 install: ## Composer install dependencies
@@ -97,6 +103,13 @@ cache-clear: ## Clear all application cache
 	@echo -e "\n~~> Running autoload dump..."
 	@docker exec -it "${PROJECT_NAME}-app" composer dump-autoload -o
 	@echo -e "\n~~> Done!"
+
+routes: ## Update routes to frontend app
+	@docker exec -it "${PROJECT_NAME}-app" php artisan ziggy:generate
+
+seed: ## Perform all seeders
+	@echo -e "\n~~> Performing seeds..."
+	@docker exec -it "${PROJECT_NAME}-app" php artisan db:seed
 
 ##@ PHP Unit - Tests
 
