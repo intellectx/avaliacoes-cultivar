@@ -13,6 +13,7 @@ export
 up: ## Start all project containers
 	@echo -e "\n~~> Starting up containers for ${PROJECT_NAME}..."
 	@docker-compose up -d
+	@npm run dev && npm run hot
 	@echo -e "~> Access Application through url: http://localhost:${DOCKER_APP_PORT}"
 
 watch: ## Start frontend hot reload
@@ -84,10 +85,13 @@ migrate: ## Run all the yii migrations
 	@echo -e "done!\n"
 
 migrate-create: ## Run all the create tool (e.g make migrate-create NAME="migrateName")
-	@docker exec -it "${PROJECT_NAME}-app" php artisan make:migration "${NAME}" --create=tasks
+	@docker exec -it "${PROJECT_NAME}-app" php artisan make:migration "${NAME}"
 
 migrate-down: ## Run all the migrate/down
-	@docker exec -it "${PROJECT_NAME}-app" ./yii migrate/down
+	@docker exec -it "${PROJECT_NAME}-app" php artisan migrate:rollback
+
+migrate-reset: ## This command effectively re-creates your entire database
+	@docker exec -it "${PROJECT_NAME}-app" php artisan migrate:refresh --seed
 
 model: ## Create a laravel model (e.g make model MODEL=User)
 	@docker exec -it "${PROJECT_NAME}-app" php artisan make:model "${MODEL}" -mfs

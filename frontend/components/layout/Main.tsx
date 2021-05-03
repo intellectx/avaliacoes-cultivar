@@ -26,7 +26,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ title = '', breadcrumb, childre
   }, [title])
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoaded(true), 2000);
+    const timer = setTimeout(() => setLoaded(true), 1500);
     return () => clearTimeout(timer);
   }, []);
 

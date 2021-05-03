@@ -1,3 +1,7 @@
 div.page-content .card-body {
     min-height: 400px;
 }
+
+.table td, .table th {
+    vertical-align: middle;
+}

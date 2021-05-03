@@ -29,7 +29,7 @@
         ]
     },
     "require": {
-        "php": "^7.3|^8.0",
+        "php": ">=7.4",
         "fideloper/proxy": "^4.4",
         "friendsofphp/php-cs-fixer": "^2.18",
         "fruitcake/laravel-cors": "^2.0",

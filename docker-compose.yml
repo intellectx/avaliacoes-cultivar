@@ -33,6 +33,18 @@ services:
       - ./.docker/mysql:/etc/mysql/conf.d
       - ./.docker/data/mysql:/var/lib/mysql
 
+#  nodejs:
+#    image: nodejs:15
+#    container_name: ${PROJECT_NAME}-nodejs
+#    restart: unless-stopped
+#    ports:
+#      - "8083:8080"
+#    volumes:
+#      - .:/home/node/app
+#      - node_modules:/home/node/app/node_modules
+#    networks:
+#      - avaliacoes-network
+
 networks:
   avaliacoes-network:
     driver: bridge

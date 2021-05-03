@@ -19,7 +19,7 @@ const LoginPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     clearErrors();
-    post(route('authenticate'));
+    await post(route('login'));
   }
 
   return (

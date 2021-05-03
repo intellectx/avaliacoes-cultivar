@@ -11,6 +11,9 @@
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/runtime/*</exclude-pattern>
     <exclude-pattern>*/frontend/*</exclude-pattern>
+    <exclude-pattern>*/*.js</exclude-pattern>
+    <exclude-pattern>*/*.json</exclude-pattern>
+    <exclude-pattern>*/*.yml</exclude-pattern>
 
     <!-- Ignore for migrations. -->
     <!-- Ignore missing namespace for migrations -->

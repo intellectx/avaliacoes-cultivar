@@ -6,6 +6,7 @@ import { faChartPie, faCog, faTimes, faSignOutAlt, faUser, faUsers } from "@fort
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import {InertiaLink} from "@inertiajs/inertia-react";
 import {APP_ROUTES, AUTH_ROUTES, GROUP_ROUTES, USER_ROUTES} from "../../config/routes";
+import route from 'ziggy-js';
 
 export default (props = {}) => {
   const { pathname } = location;
@@ -38,10 +39,10 @@ export default (props = {}) => {
   };
 
   const NavItem = (props) => {
-    const { title, link, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary" } = props;
+    const { title, link, target, icon, image, badgeText, method = "get", badgeBg = "secondary", badgeColor = "primary" } = props;
     const classNames = badgeText ? "d-flex justify-content-start align-items-center justify-content-between" : "";
     const navItemClassName = link === pathname ? "active" : "";
-    const linkProps = { as: InertiaLink, href: link };
+    const linkProps = { as: InertiaLink, method, href: link };
 
     return (
       <Nav.Item className={navItemClassName} onClick={() => setShow(false)}>
@@ -110,7 +111,13 @@ export default (props = {}) => {
                 <NavItem title="Usuários" icon={faUser} link={USER_ROUTES.INDEX} />
                 <NavItem title="Perfis de Acesso" icon={faUsers} link={GROUP_ROUTES.INDEX} />
               </CollapsableNavItem>
-              <NavItem title="Sair" link={AUTH_ROUTES.LOGIN} icon={faSignOutAlt} />
+              <NavItem
+                title="Sair"
+                as={InertiaLink}
+                link={route(AUTH_ROUTES.LOGOUT)}
+                icon={faSignOutAlt}
+                method='post'
+              />
             </Nav>
           </div>
         </SimpleBar>
