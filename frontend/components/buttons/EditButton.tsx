@@ -4,9 +4,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPencilAlt} from "@fortawesome/free-solid-svg-icons";
 import {lang} from "../../lang";
 import {InertiaLink} from "@inertiajs/inertia-react";
-import {EditButtonProps} from "./ButtonProps";
+import {ButtonProps} from "./ButtonProps";
 
-const EditButton: React.FunctionComponent<EditButtonProps> = (props) => {
+export const EditButton: React.FunctionComponent<ButtonProps> = (props) => {
   const {
     to,
     tipText = lang('general.editTip')
@@ -25,5 +25,3 @@ const EditButton: React.FunctionComponent<EditButtonProps> = (props) => {
       </Button>
   );
 }
-
-export default EditButton;

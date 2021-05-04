@@ -4,9 +4,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import {lang} from "../../lang";
 import {InertiaLink} from "@inertiajs/inertia-react";
-import {EditButtonProps} from "./ButtonProps";
+import {ButtonProps} from "./ButtonProps";
 
-const DeleteButton: React.FunctionComponent<EditButtonProps> = (props) => {
+export const DeleteButton: React.FunctionComponent<ButtonProps> = (props) => {
   const {
     to,
     tipText = lang('general.deleteTip')
@@ -26,5 +26,3 @@ const DeleteButton: React.FunctionComponent<EditButtonProps> = (props) => {
     </Button>
   );
 }
-
-export default DeleteButton;

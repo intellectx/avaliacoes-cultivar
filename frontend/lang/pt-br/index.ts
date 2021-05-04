@@ -2,6 +2,7 @@ export default {
   general: {
     query: 'Consulta de Dados',
     actions: 'Ações',
+    addTip: 'Adicionar um novo registro',
     editTip: 'Editar este registro',
     deleteTip: 'Excluir este registro',
     createTitle: 'Adicionando Registro',

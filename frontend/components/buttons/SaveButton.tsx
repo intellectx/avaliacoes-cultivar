@@ -3,19 +3,14 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSave} from "@fortawesome/free-solid-svg-icons";
 import {lang} from "../../lang";
 import {Button} from "@themesberg/react-bootstrap";
-
-export enum ContextEnum {
-  DEFAULT = 'default',
-  CREATE = 'create',
-  UPDATE = 'update'
-}
+import {ContextEnum} from "../../app/AppEnums";
 
 type SaveButtonProps = {
   context: ContextEnum,
   loading: boolean
 };
 
-const SaveButton: React.FunctionComponent<SaveButtonProps> = (props) => {
+export const SaveButton: React.FunctionComponent<SaveButtonProps> = (props) => {
   const { context, loading } = props
 
   return (
@@ -26,5 +21,3 @@ const SaveButton: React.FunctionComponent<SaveButtonProps> = (props) => {
     </Button>
   );
 };
-
-export default SaveButton;

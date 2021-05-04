@@ -1,4 +1,5 @@
-export type EditButtonProps = {
+export type ButtonProps = {
   to: string,
+  text?: string,
   tipText?: string
 }
