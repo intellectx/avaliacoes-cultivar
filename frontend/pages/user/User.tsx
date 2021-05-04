@@ -1,6 +1,7 @@
 import React from 'react';
-import MainLayout, {BreadcrumbType} from "../../components/layout/Main";
+import MainLayout from "../../components/layout/Main";
 import {USER_ROUTES} from "../../config/routes";
+import {BreadcrumbItem} from "../../app/AppTypes";
 
 const UserPage = () => {
   return (
@@ -8,7 +9,7 @@ const UserPage = () => {
   );
 };
 
-const breadcrumb: Array<BreadcrumbType> = [
+const breadcrumb: Array<BreadcrumbItem> = [
   { text: 'Usuários', href: USER_ROUTES.INDEX },
   { text: 'Listagem', active: true },
 ]

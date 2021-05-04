@@ -6,18 +6,16 @@ import Footer from "../volt-dashboard/Footer";
 import {Alert, Breadcrumb, Card, Col, Row} from "@themesberg/react-bootstrap";
 import {InertiaLink, usePage} from "@inertiajs/inertia-react";
 import {APP_ROUTES} from "../../config/routes";
-
-export type BreadcrumbType = {
-  text: string,
-  href?: string,
-  active?: boolean
-}
+import {BreadcrumbItem} from "../../app/AppTypes";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faBomb, faCheckCircle, faExclamationCircle, faInfoCircle} from "@fortawesome/free-solid-svg-icons";
+import {lang} from "../../lang";
 
 type MainLayoutProps = {
   title: string,
   children: React.ReactNode,
   isLoading?: boolean,
-  breadcrumb?: Array<BreadcrumbType>,
+  breadcrumb?: Array<BreadcrumbItem>,
 };
 
 const MainLayout: React.FC<MainLayoutProps> = (props) => {
@@ -55,10 +53,33 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
         </div>
         <Row>
           <Col xs="12">
-            {flash.success && <Alert variant="success">{flash.success}</Alert>}
-            {flash.info && <Alert variant="secondary">{flash.info}</Alert>}
-            {flash.warning && <Alert variant="warning">{flash.warning}</Alert>}
-            {flash.error && <Alert variant="danger">{flash.error}</Alert>}
+            {flash.success && (
+              <Alert variant="success">
+                <FontAwesomeIcon icon={faCheckCircle} className="me-1" />{' '}
+                <strong>Tudo certo!</strong> {lang(flash.success)}
+              </Alert>
+            )}
+
+            {flash.info && (
+              <Alert variant="secondary">
+                <FontAwesomeIcon icon={faInfoCircle} className="me-1" />{' '}
+                {lang(flash.info)}
+              </Alert>
+            )}
+
+            {flash.warning && (
+              <Alert variant="warning">
+                <FontAwesomeIcon icon={faExclamationCircle} className="me-1" />{' '}
+                <strong>Atenção!</strong> {lang(flash.warning)}
+              </Alert>
+            )}
+
+            {flash.error && (
+              <Alert variant="danger">
+                <FontAwesomeIcon icon={faBomb} className="me-1" />{' '}
+                <strong>Opss, aconteceu algo de Errado!</strong> {lang(flash.error)}
+              </Alert>
+            )}
           </Col>
         </Row>
         <Row>

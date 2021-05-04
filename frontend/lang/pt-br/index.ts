@@ -9,6 +9,9 @@ export default {
     activeLabel: 'Este registro está ativo.',
     addButton: 'Adicionar',
     editButton: 'Atualizar',
+    createMessage: 'O Registro foi adicionado.',
+    updateMessage: 'O Registro foi atualizado.',
+    deleteMessage: 'O Registro foi removido.'
   },
   validation: {
     required: 'Este campo é obrigatório',

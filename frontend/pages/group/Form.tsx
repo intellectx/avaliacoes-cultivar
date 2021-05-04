@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect} from 'react';
-import MainLayout, {BreadcrumbType} from "../../components/layout/Main";
+import MainLayout from "../../components/layout/Main";
 
 import {GROUP_ROUTES} from "../../config/routes";
 import {lang} from "../../lang";
@@ -8,7 +8,7 @@ import route from "ziggy-js";
 import {useForm} from "@inertiajs/inertia-react";
 import {SaveButton} from "../../components/buttons";
 import {ContextEnum} from "../../app/AppEnums";
-import {FormProps} from "../../app/AppTypes";
+import {BreadcrumbItem, FormProps} from "../../app/AppTypes";
 
 const GroupForm: React.FunctionComponent<FormProps> = (props) => {
   const { record = {}, meta: { context = ContextEnum.DEFAULT } } = props;
@@ -80,7 +80,7 @@ const GroupForm: React.FunctionComponent<FormProps> = (props) => {
   );
 };
 
-const breadcrumb: Array<BreadcrumbType> = [
+const breadcrumb: Array<BreadcrumbItem> = [
   {text: lang('group.title'), href: GROUP_ROUTES.INDEX},
   {text: lang('general.query'), href: GROUP_ROUTES.INDEX},
   {text: lang('general.createTitle'), active: true},

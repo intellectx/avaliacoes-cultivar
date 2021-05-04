@@ -53,7 +53,7 @@ class GroupIndexController extends Controller
             $record->active = Request::post('active');
             $record->save();
 
-            Request::session()->flash('success', 'Ótimo! O Registro foi atualizado.');
+            Request::session()->flash('success', 'general.updateMessage');
             return Redirect::route('groups.page');
         }
 
@@ -61,7 +61,7 @@ class GroupIndexController extends Controller
             Request::validate(['name' => ['required', 'max:50']])
         );
 
-        Request::session()->flash('success', 'Ótimo! O Registro foi adicionado.');
+        Request::session()->flash('success', 'general.createMessage');
         return Redirect::route('groups.page');
     }
 
@@ -73,7 +73,7 @@ class GroupIndexController extends Controller
 
         Group::destroy($id);
 
-        Request::session()->flash('success', 'Ótimo! O Registro foi removido.');
+        Request::session()->flash('success', 'general.deleteMessage');
         return Redirect::route('groups.page');
     }
 }

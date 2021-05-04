@@ -28,7 +28,7 @@ Route::middleware(['auth'])->group(function () {
             ->uses(GroupIndexController::class . '@store')
             ->where('id', '[0-9]+');
 
-        Route::delete('/{id}')
+        Route::match(['post', 'delete'], '/{id}')
             ->name('groups-delete')
             ->uses(GroupIndexController::class . '@delete')
             ->where('id', '[0-9]+');

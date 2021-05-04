@@ -1,5 +1,5 @@
 import React from 'react';
-import MainLayout, {BreadcrumbType} from "../../components/layout/Main";
+import MainLayout from "../../components/layout/Main";
 
 import {GROUP_ROUTES} from "../../config/routes";
 import {Card, Table} from "@themesberg/react-bootstrap";
@@ -7,7 +7,7 @@ import {lang} from "../../lang";
 import { AddButton, EditButton, DeleteButton } from "../../components/buttons";
 import {InertiaLink} from "@inertiajs/inertia-react";
 import AppPagination from "../../components/AppPagination";
-import {QueryPageProps} from "../../app/AppTypes";
+import {BreadcrumbItem, QueryPageProps} from "../../app/AppTypes";
 
 const GroupPage: React.FunctionComponent<QueryPageProps<Record<string, unknown>>> = (props) => {
   const { data, pagination } = props;
@@ -47,7 +47,7 @@ const GroupPage: React.FunctionComponent<QueryPageProps<Record<string, unknown>>
   );
 };
 
-const breadcrumb: Array<BreadcrumbType> = [
+const breadcrumb: Array<BreadcrumbItem> = [
   {text: lang('group.title'), href: GROUP_ROUTES.INDEX},
   {text: lang('general.query'), active: true},
 ]

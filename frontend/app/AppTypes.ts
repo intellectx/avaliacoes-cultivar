@@ -19,3 +19,9 @@ export type QueryPageProps<T> = {
   data: T[]
   pagination: GridPagination
 }
+
+export type BreadcrumbItem = {
+  text: string,
+  href?: string,
+  active?: boolean
+}
