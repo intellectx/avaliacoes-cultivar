@@ -15,24 +15,21 @@ export type BreadcrumbType = {
 
 type MainLayoutProps = {
   title: string,
-  breadcrumb?: Array<BreadcrumbType>
+  isLoading?: boolean,
+  breadcrumb?: Array<BreadcrumbType>,
+  children: React.ReactNode
 };
 
-const MainLayout: React.FC<MainLayoutProps> = ({ title = '', breadcrumb, children }) => {
-  const [loaded, setLoaded] = useState(false);
+const MainLayout: React.FC<MainLayoutProps> = (props) => {
+  const { title = '', isLoading = false, breadcrumb, children } = props;
 
   useEffect(() => {
     document.title = `${title && title.length > 0 ? title + ' | ' : ''}Avaliações Cultivar`;
   }, [title])
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoaded(true), 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <>
-      <Preloader show={!loaded}/>
+      <Preloader show={isLoading}/>
       <Sidebar/>
 
       <main className="content">

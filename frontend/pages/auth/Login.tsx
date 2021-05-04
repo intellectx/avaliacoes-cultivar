@@ -1,6 +1,6 @@
-import React, {ChangeEvent, FormEvent} from "react";
+import React, {ChangeEvent} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEnvelope, faUnlockAlt, faSignInAlt} from "@fortawesome/free-solid-svg-icons";
+import {faSignInAlt} from "@fortawesome/free-solid-svg-icons";
 import {Button, Card, Col, Form, FormCheck, InputGroup, Row} from "@themesberg/react-bootstrap";
 import {AUTH_ROUTES} from "../../config/routes";
 import {InertiaLink} from "@inertiajs/inertia-react";

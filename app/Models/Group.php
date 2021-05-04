@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     protected $fillable = ['name', 'active'];
-    protected $hidden = ['system_name', 'remember_token'];
+    protected $hidden = ['remember_token'];
 }

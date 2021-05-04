@@ -17,7 +17,7 @@ class CreateGroupsTable extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
             $table->string('name', 60)->nullable(false);
-            $table->enum('system_name', ['ADMIN', 'MANAGER', 'SCHOOL', 'TEACHER']);
+            $table->enum('system_name', ['ADMIN', 'MANAGER', 'SCHOOL', 'TEACHER'])->nullable(true);
             $table->boolean('active')->nullable(false)->default(true);
             $table->timestamps();
         });

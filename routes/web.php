@@ -7,16 +7,28 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\UserIndexController;
 use Illuminate\Support\Facades\Route;
 
-// App
-Route::get('/')
-    ->name('dashboard.page')
-    ->uses(DashboardController::class)
-    ->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    // App
+    Route::get('/')->name('dashboard.page')->uses(DashboardController::class);
+    Route::get('/dashboard')->name('dashboard.page');
 
-Route::get('/dashboard')
-    ->name('dashboard.page')
-    ->uses(DashboardController::class)
-    ->middleware('auth');
+    // Groups
+    Route::prefix('/system/groups')->group(function () {
+        Route::get('/')->name('groups.page')->uses(GroupIndexController::class . '@index');
+        Route::get('/create')->name('groups-create.page')->uses(GroupIndexController::class . '@create');
+        Route::post('/')->name('groups-create')->uses(GroupIndexController::class . '@store');
+
+        Route::get('/update/{id}')
+            ->name('group-update.page')
+            ->uses(GroupIndexController::class . '@update')
+            ->where('id', '[0-9]+');
+
+        Route::put('/update/{id}')
+            ->name('groups-update')
+            ->uses(GroupIndexController::class . '@store')
+            ->where('id', '[0-9]+');
+    });
+});
 
 // Auth
 Route::get('/forgot-password')->name('forgot-password.page')->uses(ForgotPasswordController::class);
@@ -26,10 +38,4 @@ Route::get('/reset-password')->name('reset-password.page')->uses(ResetPasswordCo
 Route::get('/system/users')
     ->name('users.page')
     ->uses(UserIndexController::class)
-    ->middleware('auth');
-
-// Group
-Route::get('/system/groups')
-    ->name('groups.page')
-    ->uses(GroupIndexController::class)
     ->middleware('auth');

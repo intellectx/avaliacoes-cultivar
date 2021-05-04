@@ -2,46 +2,39 @@ import React from 'react';
 import MainLayout, {BreadcrumbType} from "../../components/layout/Main";
 
 import {GROUP_ROUTES} from "../../config/routes";
-import {Card, Pagination, Table} from "@themesberg/react-bootstrap";
+import {Button, Card, Pagination, Table} from "@themesberg/react-bootstrap";
 import {lang} from "../../lang";
 import EditButton from "../../components/buttons/EditButton";
 import DeleteButton from "../../components/buttons/DeleteButton";
 import {InertiaLink} from "@inertiajs/inertia-react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleDoubleLeft, faAngleDoubleRight} from "@fortawesome/free-solid-svg-icons";
+import {faAngleDoubleLeft, faAngleDoubleRight, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
 
 type GroupRecord = {
   id: number,
-  name: string
+  name: string,
+  system_name?: string
+}
+
+type GridPagination = {
+  totalItems: number,
+  totalPages: number,
+  currentPage: number
 }
 
 type GroupPageProps = {
-  totalPages: number,
   data: GroupRecord[]
+  pagination: GridPagination
 }
 
 const GroupPage: React.FunctionComponent<GroupPageProps> = (props) => {
-  const [activeItem, setActiveItem] = React.useState(2);
-  const [disablePrev, setDisablePrev] = React.useState(true);
-  const [disableNext, setDisableNext] = React.useState(true);
-  const { data, totalPages = 5 } = props;
-
-  console.log(data);
-
-  const onPrevItem = () => {
-    const prevActiveItem = activeItem === 1 ? activeItem : activeItem - 1;
-    setDisablePrev(activeItem === 1);
-    setActiveItem(prevActiveItem);
-  };
-
-  const onNextItem = (totalPages: number) => {
-    const nextActiveItem = activeItem === totalPages ? activeItem : activeItem + 1;
-    setDisableNext(activeItem === totalPages);
-    setActiveItem(nextActiveItem);
-  };
+  const { data, pagination: { totalPages, totalItems = 0, currentPage = 1 }} = props;
 
   return (
     <>
+      <Button as={InertiaLink} href={GROUP_ROUTES.CREATE} variant="primary" className="mb-4">
+        <FontAwesomeIcon icon={faPlusCircle} className="me-2" /> {lang('general.addButton')}
+      </Button>
       <Table responsive striped hover className="table-centered table-nowrap rounded mb-0">
         <thead className="thead-light">
         <tr>
@@ -61,34 +54,44 @@ const GroupPage: React.FunctionComponent<GroupPageProps> = (props) => {
                   </Card.Link>
                 </td>
                 <td className='text-center'>
-                  <EditButton to='#' />
-                  <DeleteButton to="#" />
+                  <EditButton to={GROUP_ROUTES.UPDATE.replace('{id}', String(record.id))} />
+                  {!record.system_name && <DeleteButton to="#" />}
                 </td>
               </tr>
             ))
           }
         </tbody>
       </Table>
-      <Pagination size='sm' className="mt-3 text-right">
-        <Pagination.Prev disabled={disablePrev} onClick={onPrevItem}>
-          <FontAwesomeIcon icon={faAngleDoubleLeft} />
-        </Pagination.Prev>
+      { totalPages > 1 &&
+        <Pagination size='sm' className="mt-3 text-right">
+          <Pagination.Prev
+            disabled={currentPage === 1}
+            as={InertiaLink}
+            href={`${GROUP_ROUTES.INDEX}?page=${currentPage - 1}`}
+          >
+            <FontAwesomeIcon icon={faAngleDoubleLeft} />
+          </Pagination.Prev>
           {
-            [1,2,3,4,5,6,7].map(number => (
+            [...Array(totalPages)].map((x, pageNumber) => (
               <Pagination.Item
-                active={activeItem === number}
-                key={number}
-                onClick={() => setActiveItem(number)}
+                active={currentPage === (pageNumber + 1)}
+                key={pageNumber}
+                as={InertiaLink}
+                href={`${GROUP_ROUTES.INDEX}?page=${pageNumber + 1}`}
               >
-                {number}
+                {pageNumber + 1}
               </Pagination.Item>
-              )
-            )
+            ))
           }
-        <Pagination.Next disabled={disableNext} onClick={() => onNextItem(totalPages)}>
-          <FontAwesomeIcon icon={faAngleDoubleRight} />
-        </Pagination.Next>
-      </Pagination>
+          <Pagination.Next
+            disabled={currentPage === totalPages}
+            as={InertiaLink}
+            href={`${GROUP_ROUTES.INDEX}?page=${currentPage + 1}`}
+          >
+            <FontAwesomeIcon icon={faAngleDoubleRight} />
+          </Pagination.Next>
+        </Pagination>
+      }
     </>
   );
 };
