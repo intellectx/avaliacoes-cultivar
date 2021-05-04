@@ -3,8 +3,8 @@ import Preloader from "../volt-dashboard/Preloader";
 import Sidebar from "../volt-dashboard/Sidebar";
 import Navbar from "../volt-dashboard/Navbar";
 import Footer from "../volt-dashboard/Footer";
-import {Breadcrumb, Card, Col, Row} from "@themesberg/react-bootstrap";
-import {InertiaLink} from "@inertiajs/inertia-react";
+import {Alert, Breadcrumb, Card, Col, Row} from "@themesberg/react-bootstrap";
+import {InertiaLink, usePage} from "@inertiajs/inertia-react";
 import {APP_ROUTES} from "../../config/routes";
 
 export type BreadcrumbType = {
@@ -15,13 +15,15 @@ export type BreadcrumbType = {
 
 type MainLayoutProps = {
   title: string,
+  children: React.ReactNode,
   isLoading?: boolean,
   breadcrumb?: Array<BreadcrumbType>,
-  children: React.ReactNode
 };
 
 const MainLayout: React.FC<MainLayoutProps> = (props) => {
   const { title = '', isLoading = false, breadcrumb, children } = props;
+  // @ts-ignore
+  const { flash, user } = usePage().props
 
   useEffect(() => {
     document.title = `${title && title.length > 0 ? title + ' | ' : ''}Avaliações Cultivar`;
@@ -33,7 +35,7 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
       <Sidebar/>
 
       <main className="content">
-        <Navbar/>
+        <Navbar user={user} />
 
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
           <div className="d-block mb-4 mb-md-0">
@@ -51,6 +53,14 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
             <h4>{ title }</h4>
           </div>
         </div>
+        <Row>
+          <Col xs="12">
+            {flash.success && <Alert variant="success">{flash.success}</Alert>}
+            {flash.info && <Alert variant="secondary">{flash.info}</Alert>}
+            {flash.warning && <Alert variant="warning">{flash.warning}</Alert>}
+            {flash.error && <Alert variant="danger">{flash.error}</Alert>}
+          </Col>
+        </Row>
         <Row>
           <Col className="mb-4 page-content" xs="12">
             <Card>

@@ -45,7 +45,7 @@ class GroupIndexController extends Controller
         ]);
     }
 
-    public function store($id)
+    public function store(?string $id = null)
     {
         if ($id) {
             $record = Group::find($id);
@@ -53,6 +53,7 @@ class GroupIndexController extends Controller
             $record->active = Request::post('active');
             $record->save();
 
+            Request::session()->flash('success', 'Ótimo! O Registro foi atualizado.');
             return Redirect::route('groups.page');
         }
 
@@ -60,6 +61,19 @@ class GroupIndexController extends Controller
             Request::validate(['name' => ['required', 'max:50']])
         );
 
+        Request::session()->flash('success', 'Ótimo! O Registro foi adicionado.');
+        return Redirect::route('groups.page');
+    }
+
+    public function delete($id)
+    {
+        if (!$id) {
+            return Redirect::refresh(400);
+        }
+
+        Group::destroy($id);
+
+        Request::session()->flash('success', 'Ótimo! O Registro foi removido.');
         return Redirect::route('groups.page');
     }
 }

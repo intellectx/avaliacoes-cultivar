@@ -3,14 +3,13 @@ import MainLayout, {BreadcrumbType} from "../../components/layout/Main";
 
 import {GROUP_ROUTES} from "../../config/routes";
 import {lang} from "../../lang";
-import {Button, Col, Form, FormCheck, Row} from "@themesberg/react-bootstrap";
+import {Col, Form, Row} from "@themesberg/react-bootstrap";
 import route from "ziggy-js";
 import {useForm} from "@inertiajs/inertia-react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSave} from "@fortawesome/free-solid-svg-icons";
+import SaveButton, {ContextEnum} from "../../components/buttons/SaveButton";
 
 type MetaData = {
-  context?: string
+  context: ContextEnum
 }
 
 type GroupRecord = {
@@ -26,14 +25,14 @@ type GroupFormProps = {
 }
 
 const GroupForm: React.FunctionComponent<GroupFormProps> = (props) => {
-  const { record, meta } = props;
+  const { record, meta: { context = ContextEnum.DEFAULT } } = props;
   const { data, setData, errors, post, put, processing, hasErrors, clearErrors } = useForm({
     name: '',
     active: true
   });
 
   useEffect(() => {
-    if (meta.context === 'update' && record !== undefined) {
+    if (context === ContextEnum.UPDATE && record !== undefined) {
       setData({ name: record.name, active: record.active });
     }
   }, []);
@@ -42,7 +41,7 @@ const GroupForm: React.FunctionComponent<GroupFormProps> = (props) => {
     e.preventDefault();
     clearErrors();
 
-    if (meta.context === 'update' && record !== undefined) {
+    if (context === ContextEnum.UPDATE && record !== undefined) {
       await put(route('groups-update', { id: record.id }));
       return;
     }
@@ -72,7 +71,9 @@ const GroupForm: React.FunctionComponent<GroupFormProps> = (props) => {
         <Row>
           <Col xs={6}>
             <Form.Check
-              checked={true}
+              checked={data.active}
+              disabled={processing}
+              id='active'
               type="checkbox"
               onChange={(e: ChangeEvent<HTMLInputElement>) => setData('active', e.target.checked)}
               label={lang('general.activeLabel')}
@@ -81,10 +82,7 @@ const GroupForm: React.FunctionComponent<GroupFormProps> = (props) => {
         </Row>
         <Row>
           <Col xs={12} className='mt-4'>
-            <Button type='submit' variant="primary">
-              <FontAwesomeIcon icon={faSave} className="me-2" />{' '}
-              {meta.context === 'create' ? lang('general.addButton') : lang('general.editButton')}
-            </Button>
+            <SaveButton context={context} loading={processing} />
           </Col>
         </Row>
       </Form>
@@ -100,7 +98,7 @@ const breadcrumb: Array<BreadcrumbType> = [
 
 // @ts-ignore
 GroupForm.layout = page => (
-  <MainLayout children={page} isLoading={false} title={lang('group.title')} breadcrumb={breadcrumb}/>
+  <MainLayout children={page} title={lang('group.title')} breadcrumb={breadcrumb}/>
 )
 
 export default GroupForm;

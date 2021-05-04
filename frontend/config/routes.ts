@@ -13,6 +13,7 @@ export enum GROUP_ROUTES {
   INDEX = "/system/groups",
   CREATE = "/system/groups/create",
   UPDATE = "/system/groups/update/{id}",
+  DELETE = "/system/groups/{id}"
 }
 
 export enum USER_ROUTES {

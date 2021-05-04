@@ -55,7 +55,7 @@ const GroupPage: React.FunctionComponent<GroupPageProps> = (props) => {
                 </td>
                 <td className='text-center'>
                   <EditButton to={GROUP_ROUTES.UPDATE.replace('{id}', String(record.id))} />
-                  {!record.system_name && <DeleteButton to="#" />}
+                  {!record.system_name && <DeleteButton to={GROUP_ROUTES.DELETE.replace('{id}', String(record.id))} />}
                 </td>
               </tr>
             ))

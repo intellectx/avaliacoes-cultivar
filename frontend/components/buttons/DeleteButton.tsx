@@ -17,6 +17,7 @@ const DeleteButton: React.FunctionComponent<EditButtonProps> = (props) => {
       as={InertiaLink}
       href={to}
       title={tipText}
+      method='delete'
       variant="danger"
       size="sm"
       className="m-1"

@@ -23,9 +23,14 @@ Route::middleware(['auth'])->group(function () {
             ->uses(GroupIndexController::class . '@update')
             ->where('id', '[0-9]+');
 
-        Route::put('/update/{id}')
+        Route::put('/{id}')
             ->name('groups-update')
             ->uses(GroupIndexController::class . '@store')
+            ->where('id', '[0-9]+');
+
+        Route::delete('/{id}')
+            ->name('groups-delete')
+            ->uses(GroupIndexController::class . '@delete')
             ->where('id', '[0-9]+');
     });
 });
