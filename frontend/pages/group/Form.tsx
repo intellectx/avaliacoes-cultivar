@@ -1,39 +1,29 @@
 import React, {ChangeEvent, useEffect} from 'react';
-import MainLayout, {BreadcrumbType} from "../../components/layout/Main";
+import MainLayout from "../../components/layout/Main";
 
-import {GROUP_ROUTES} from "../../config/routes";
 import {lang} from "../../lang";
 import {Col, Form, Row} from "@themesberg/react-bootstrap";
 import route from "ziggy-js";
 import {useForm} from "@inertiajs/inertia-react";
-import SaveButton, {ContextEnum} from "../../components/buttons/SaveButton";
+import {SaveButton} from "../../components/buttons";
+import {ContextEnum} from "../../app/AppEnums";
+import {BreadcrumbItem, FormProps} from "../../app/AppTypes";
+import {GROUP_ROUTES} from "../../config/routes";
 
-type MetaData = {
-  context: ContextEnum
-}
-
-type GroupRecord = {
-  id: number,
-  name: string,
-  active: boolean
-  system_name?: string,
-}
-
-type GroupFormProps = {
-  record?: GroupRecord,
-  meta: MetaData
-}
-
-const GroupForm: React.FunctionComponent<GroupFormProps> = (props) => {
-  const { record, meta: { context = ContextEnum.DEFAULT } } = props;
+const GroupForm: React.FunctionComponent<FormProps> = (props) => {
+  const { record = {}, meta: { context = ContextEnum.DEFAULT } } = props;
   const { data, setData, errors, post, put, processing, hasErrors, clearErrors } = useForm({
     name: '',
     active: true
   });
 
+  function isNewRecord(): boolean {
+    return Object.keys(record).length === 0 && context === ContextEnum.CREATE
+  }
+
   useEffect(() => {
-    if (context === ContextEnum.UPDATE && record !== undefined) {
-      setData({ name: record.name, active: record.active });
+    if (!isNewRecord()) {
+      setData({ name: String(record.name), active: Boolean(record.active) });
     }
   }, []);
 
@@ -41,8 +31,8 @@ const GroupForm: React.FunctionComponent<GroupFormProps> = (props) => {
     e.preventDefault();
     clearErrors();
 
-    if (context === ContextEnum.UPDATE && record !== undefined) {
-      await put(route('groups-update', { id: record.id }));
+    if (!isNewRecord()) {
+      await put(route('groups-update', { id: Number(record.id) }));
       return;
     }
 
@@ -53,8 +43,8 @@ const GroupForm: React.FunctionComponent<GroupFormProps> = (props) => {
     <>
       <Form onSubmit={handleSubmit}>
         <Row>
-          <Col xs={6}>
-            <Form.Group id="email" className="mb-4">
+          <Col xs={12} sm={12} md={12} lg={6}>
+            <Form.Group id="name" className="mb-4">
               <Form.Label>{lang('group.fields.name')}</Form.Label>
               <Form.Control
                 autoFocus
@@ -69,7 +59,7 @@ const GroupForm: React.FunctionComponent<GroupFormProps> = (props) => {
           </Col>
         </Row>
         <Row>
-          <Col xs={6}>
+          <Col xs={12} md={6}>
             <Form.Check
               checked={data.active}
               disabled={processing}
@@ -90,7 +80,7 @@ const GroupForm: React.FunctionComponent<GroupFormProps> = (props) => {
   );
 };
 
-const breadcrumb: Array<BreadcrumbType> = [
+const breadcrumb: Array<BreadcrumbItem> = [
   {text: lang('group.title'), href: GROUP_ROUTES.INDEX},
   {text: lang('general.query'), href: GROUP_ROUTES.INDEX},
   {text: lang('general.createTitle'), active: true},

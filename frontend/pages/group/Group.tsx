@@ -1,40 +1,20 @@
 import React from 'react';
-import MainLayout, {BreadcrumbType} from "../../components/layout/Main";
+import MainLayout from "../../components/layout/Main";
 
 import {GROUP_ROUTES} from "../../config/routes";
-import {Button, Card, Pagination, Table} from "@themesberg/react-bootstrap";
+import {Card, Table} from "@themesberg/react-bootstrap";
 import {lang} from "../../lang";
-import EditButton from "../../components/buttons/EditButton";
-import DeleteButton from "../../components/buttons/DeleteButton";
+import { AddButton, EditButton, DeleteButton } from "../../components/buttons";
 import {InertiaLink} from "@inertiajs/inertia-react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleDoubleLeft, faAngleDoubleRight, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
+import AppPagination from "../../components/AppPagination";
+import {BreadcrumbItem, QueryPageProps} from "../../app/AppTypes";
 
-type GroupRecord = {
-  id: number,
-  name: string,
-  system_name?: string
-}
-
-type GridPagination = {
-  totalItems: number,
-  totalPages: number,
-  currentPage: number
-}
-
-type GroupPageProps = {
-  data: GroupRecord[]
-  pagination: GridPagination
-}
-
-const GroupPage: React.FunctionComponent<GroupPageProps> = (props) => {
-  const { data, pagination: { totalPages, totalItems = 0, currentPage = 1 }} = props;
+const GroupPage: React.FunctionComponent<QueryPageProps<Record<string, unknown>>> = (props) => {
+  const { data, pagination } = props;
 
   return (
     <>
-      <Button as={InertiaLink} href={GROUP_ROUTES.CREATE} variant="primary" className="mb-4">
-        <FontAwesomeIcon icon={faPlusCircle} className="me-2" /> {lang('general.addButton')}
-      </Button>
+      <AddButton to={GROUP_ROUTES.CREATE} />
       <Table responsive striped hover className="table-centered table-nowrap rounded mb-0">
         <thead className="thead-light">
         <tr>
@@ -47,10 +27,10 @@ const GroupPage: React.FunctionComponent<GroupPageProps> = (props) => {
         <tbody>
           {
             data.map(record => (
-              <tr key={record.id}>
+              <tr key={Number(record.id)}>
                 <td className="fw-bold">
                   <Card.Link href="#" as={InertiaLink} className="text-primary fw-bold d-block">
-                    {record.name}
+                    {String(record.name)}
                   </Card.Link>
                 </td>
                 <td className='text-center'>
@@ -62,41 +42,12 @@ const GroupPage: React.FunctionComponent<GroupPageProps> = (props) => {
           }
         </tbody>
       </Table>
-      { totalPages > 1 &&
-        <Pagination size='sm' className="mt-3 text-right">
-          <Pagination.Prev
-            disabled={currentPage === 1}
-            as={InertiaLink}
-            href={`${GROUP_ROUTES.INDEX}?page=${currentPage - 1}`}
-          >
-            <FontAwesomeIcon icon={faAngleDoubleLeft} />
-          </Pagination.Prev>
-          {
-            [...Array(totalPages)].map((x, pageNumber) => (
-              <Pagination.Item
-                active={currentPage === (pageNumber + 1)}
-                key={pageNumber}
-                as={InertiaLink}
-                href={`${GROUP_ROUTES.INDEX}?page=${pageNumber + 1}`}
-              >
-                {pageNumber + 1}
-              </Pagination.Item>
-            ))
-          }
-          <Pagination.Next
-            disabled={currentPage === totalPages}
-            as={InertiaLink}
-            href={`${GROUP_ROUTES.INDEX}?page=${currentPage + 1}`}
-          >
-            <FontAwesomeIcon icon={faAngleDoubleRight} />
-          </Pagination.Next>
-        </Pagination>
-      }
+      <AppPagination buttonsUrl={GROUP_ROUTES.INDEX} {...pagination} />
     </>
   );
 };
 
-const breadcrumb: Array<BreadcrumbType> = [
+const breadcrumb: Array<BreadcrumbItem> = [
   {text: lang('group.title'), href: GROUP_ROUTES.INDEX},
   {text: lang('general.query'), active: true},
 ]
