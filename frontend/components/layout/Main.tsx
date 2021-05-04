@@ -8,7 +8,7 @@ import {InertiaLink, usePage} from "@inertiajs/inertia-react";
 import {APP_ROUTES} from "../../config/routes";
 import {BreadcrumbItem} from "../../app/AppTypes";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBomb, faCheckCircle, faExclamationCircle, faInfoCircle} from "@fortawesome/free-solid-svg-icons";
+import {faBomb, faCheckCircle, faExclamationCircle, faHome, faInfoCircle} from "@fortawesome/free-solid-svg-icons";
 import {lang} from "../../lang";
 
 type MainLayoutProps = {
@@ -37,17 +37,16 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
 
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
           <div className="d-block mb-4 mb-md-0">
-            { breadcrumb && breadcrumb.length > 0 &&
               <Breadcrumb className="d-none d-md-inline-block" listProps={{ className: "breadcrumb-dark breadcrumb-transparent" }}>
-                <Breadcrumb.Item linkAs={InertiaLink} href={APP_ROUTES.DASHBOARD}>Início</Breadcrumb.Item>
-                { breadcrumb.map((item, key) => (
+                <Breadcrumb.Item linkAs={InertiaLink} href={APP_ROUTES.DASHBOARD}>
+                  <FontAwesomeIcon icon={faHome} /> Início
+                </Breadcrumb.Item>
+                { breadcrumb && breadcrumb.length > 0 && breadcrumb.map((item, key) => (
                   <Breadcrumb.Item key={key} active={item.active} linkAs={InertiaLink} href={item.href}>
                     {item.text}
                   </Breadcrumb.Item>
-                )
-              )}
+                ))}
               </Breadcrumb>
-            }
             <h4>{ title }</h4>
           </div>
         </div>

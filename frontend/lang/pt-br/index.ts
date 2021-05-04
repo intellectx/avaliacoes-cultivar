@@ -11,7 +11,9 @@ export default {
     editButton: 'Atualizar',
     createMessage: 'O Registro foi adicionado.',
     updateMessage: 'O Registro foi atualizado.',
-    deleteMessage: 'O Registro foi removido.'
+    deleteMessage: 'O Registro foi removido.',
+    createdAt: 'Data Cadastro',
+    defaultSelectOption: ':: Selecione ::'
   },
   validation: {
     required: 'Este campo é obrigatório',
@@ -24,6 +26,16 @@ export default {
     title: 'Perfis de Acesso',
     fields: {
       name: 'Nome'
+    }
+  },
+  user: {
+    title: 'Usuários',
+    fields: {
+      name: 'Nome',
+      email: 'E-mail',
+      group: 'Perfil de Acesso',
+      password: 'Senha de Acesso',
+      passwordConfirmation: 'Repita sua senha',
     }
   }
 };

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class GroupIndexController extends Controller
+class GroupController extends Controller
 {
     public function index(): Response
     {

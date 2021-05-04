@@ -17,5 +17,8 @@ export enum GROUP_ROUTES {
 }
 
 export enum USER_ROUTES {
-  INDEX = "/system/users"
+  INDEX = "/system/users",
+  CREATE = "/system/users/create",
+  UPDATE = "/system/users/update/{id}",
+  DELETE = "/system/users/{id}"
 }

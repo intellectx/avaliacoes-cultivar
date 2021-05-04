@@ -1,7 +1,6 @@
 import React, {ChangeEvent, useEffect} from 'react';
 import MainLayout from "../../components/layout/Main";
 
-import {GROUP_ROUTES} from "../../config/routes";
 import {lang} from "../../lang";
 import {Col, Form, Row} from "@themesberg/react-bootstrap";
 import route from "ziggy-js";
@@ -9,6 +8,7 @@ import {useForm} from "@inertiajs/inertia-react";
 import {SaveButton} from "../../components/buttons";
 import {ContextEnum} from "../../app/AppEnums";
 import {BreadcrumbItem, FormProps} from "../../app/AppTypes";
+import {GROUP_ROUTES} from "../../config/routes";
 
 const GroupForm: React.FunctionComponent<FormProps> = (props) => {
   const { record = {}, meta: { context = ContextEnum.DEFAULT } } = props;
@@ -44,7 +44,7 @@ const GroupForm: React.FunctionComponent<FormProps> = (props) => {
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col xs={12} sm={12} md={12} lg={6}>
-            <Form.Group id="email" className="mb-4">
+            <Form.Group id="name" className="mb-4">
               <Form.Label>{lang('group.fields.name')}</Form.Label>
               <Form.Control
                 autoFocus
